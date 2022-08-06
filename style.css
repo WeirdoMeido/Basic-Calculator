@@ -20,7 +20,7 @@ body {
 .numbers {
     display: grid;
     grid: 100px 100px 100px 100px/100px 100px 100px 100px;
-    gap: 10px;
+    gap: 15px;
 
 }
 
@@ -39,13 +39,12 @@ body {
     font-size: 50px;
     font-weight: bold;
     text-align: right;
-    width: auto;
-    height: auto;
     border: solid black 1px;
     width: 100%;
+    gap: 10px;
 }
 
 .pre-operation {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: bold;
 }
