@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    width: auto;
+    height: auto;
+    border: solid black 1px;
+    gap: 15px;
+}
+
+.numbers {
+    display: grid;
+    grid: 100px 100px 100px 100px/100px 100px 100px 100px;
+    gap: 10px;
+
+}
+
+.number-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: bold;
+    border: solid black 1px;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: right;
+    width: auto;
+    height: auto;
+    border: solid black 1px;
+    width: 100%;
+}
+
+.pre-operation {
+    font-size: 10px;
+    font-weight: bold;
+}
