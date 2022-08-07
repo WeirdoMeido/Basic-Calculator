@@ -24,7 +24,10 @@ body {
 
 }
 
-.number-key {
+.number-key,
+.operation-key,
+.equal-key,
+.decimal-key {
     display: flex;
     align-items: center;
     justify-content: center;
