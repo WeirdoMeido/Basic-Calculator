@@ -1,13 +1,20 @@
-let currentOperation = document.querySelector(".current-operation");
-let lastOperation = document.querySelector(".pre-operation");
+const currentOperation = document.querySelector(".current-operation");
+const lastOperation = document.querySelector(".pre-operation");
 const operatorButton = document.querySelectorAll(".operation-key");
 const numberBtn = document.querySelectorAll(".number-key");
-
+const acKey = document.getElementById("ac");
+const delKey = document.getElementById("del");
+const equalKey = document.querySelector(".equal-key");
+const decimalKey = document.querySelector(".decimal-key");
 
 
 numberBtn.forEach((element) => {
     element.addEventListener('click', () => appendNumber(element.textContent))
 });
+
+acKey.addEventListener("click", clearContent);
+
+delKey.addEventListener("click", deleteNumber);
 
 
 ////FUNCTIONS////
@@ -38,4 +45,16 @@ function appendNumber (number) {
 
 function resetScreen () {
     currentOperation.textContent = '';
+}
+
+function clearContent () {
+    currentOperation.textContent = '0';
+
+}
+
+function deleteNumber () {
+    let numberLength = Number(currentOperation.textContent.length - 1);
+   let newNumber = currentOperation.textContent.slice(0, numberLength);
+   currentOperation.textContent = newNumber;
+
 }
