@@ -7,14 +7,23 @@ const delKey = document.getElementById("del");
 const equalKey = document.querySelector(".equal-key");
 const decimalKey = document.querySelector(".decimal-key");
 
+let firstMember = '';
+let secondMember = '';
+let currentOperator = '';
+
 
 numberBtn.forEach((element) => {
-    element.addEventListener('click', () => appendNumber(element.textContent))
+    element.addEventListener("click", () => appendNumber(element.textContent))
+});
+
+operatorButton.forEach((element) => {
+    element.addEventListener("click", () => setOperator(element.textContent))
 });
 
 acKey.addEventListener("click", clearContent);
 
 delKey.addEventListener("click", deleteNumber);
+
 
 
 ////FUNCTIONS////
@@ -49,6 +58,7 @@ function resetScreen () {
 
 function clearContent () {
     currentOperation.textContent = '0';
+    lastOperation.textContent = '';
 
 }
 
@@ -57,4 +67,42 @@ function deleteNumber () {
    let newNumber = currentOperation.textContent.slice(0, numberLength);
    currentOperation.textContent = newNumber;
 
+}
+
+function setOperator (operator) {
+    if (operator === '+') {
+        currentOperator = '+';
+        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+        currentOperation.textContent = '0';
+    }
+    else if (operator === '-') {
+        currentOperator = '-';
+        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+        currentOperation.textContent = '0';
+    }
+    else if (operator === 'x') {
+        currentOperator = '*';
+        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+        currentOperation.textContent = '0';
+    }
+    else if (operator === '÷') {
+        currentOperator = '/';
+        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+        currentOperation.textContent = '0';
+    }
+}
+
+function evaluate (firstMember, currentOperation, secondMember) {
+    if (currentOperation === '+') {
+        add(firstMember + secondMember);
+    }
+    else if (currentOperation === '-') {
+        substract(firstMember - secondMember);
+    }
+    else if (currentOperation === '*') {
+        multiply(firstMember * secondMember);
+    }
+    else if (currentOperation === '/') {
+        divide(firstMember - secondMember)
+    }
 }
