@@ -34,7 +34,8 @@ body {
 .operation-key,
 .equal-key,
 .decimal-key,
-.func-button {
+.del-key,
+.ac-key {
     display: flex;
     align-items: center;
     justify-content: center;

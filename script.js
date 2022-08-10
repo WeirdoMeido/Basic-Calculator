@@ -10,6 +10,7 @@ const decimalKey = document.querySelector(".decimal-key");
 let firstMember = '';
 let secondMember = '';
 let currentOperator = '';
+let result = '';
 
 
 numberBtn.forEach((element) => {
@@ -24,25 +25,7 @@ acKey.addEventListener("click", clearContent);
 
 delKey.addEventListener("click", deleteNumber);
 
-
-
 ////FUNCTIONS////
-
-function add (a, b) {
-    return a + b;
-}
-
-function substract (a, b) {
-    return a - b;
-}
-
-function multiply (a, b) {
-    return a * b;
-}
-
-function divide (a, b) {
-    return a / b;
-}
 
 function appendNumber (number) {
     if (currentOperation.textContent === '0') {
@@ -59,6 +42,9 @@ function resetScreen () {
 function clearContent () {
     currentOperation.textContent = '0';
     lastOperation.textContent = '';
+    currentOperator = '';
+    firstMember = '';
+    secondMember = '';
 
 }
 
@@ -70,25 +56,23 @@ function deleteNumber () {
 }
 
 function setOperator (operator) {
-    if (operator === '+') {
-        currentOperator = '+';
-        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+    
+    if (currentOperator === '++') {
+        secondMember = Number(currentOperation.textContent);
+        console.log(secondMember);
+        lastOperation.textContent = add (firstMember, secondMember);
+        
         currentOperation.textContent = '0';
+        firstMember = '';
+        secondMember = '';
     }
-    else if (operator === '-') {
-        currentOperator = '-';
-        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
-        currentOperation.textContent = '0';
-    }
-    else if (operator === 'x') {
-        currentOperator = '*';
-        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
-        currentOperation.textContent = '0';
-    }
-    else if (operator === '÷') {
-        currentOperator = '/';
-        lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
-        currentOperation.textContent = '0';
+        if (operator === '+' && currentOperator !== '++') {
+                currentOperator = '+';
+                lastOperation.textContent = `${currentOperation.textContent} ${currentOperator}`;
+                firstMember = Number(currentOperation.textContent);
+                currentOperation.textContent = '0';
+                currentOperator += '+'
+
     }
 }
 
@@ -105,4 +89,20 @@ function evaluate (firstMember, currentOperation, secondMember) {
     else if (currentOperation === '/') {
         divide(firstMember - secondMember)
     }
+}
+
+function add (a, b) {
+    return a + b;
+}
+
+function substract (a, b) {
+    return a - b;
+}
+
+function multiply (a, b) {
+    return a * b;
+}
+
+function divide (a, b) {
+    return a / b;
 }
