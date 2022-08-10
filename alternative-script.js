@@ -18,6 +18,12 @@ function inputDigit(digit) {
 }
 
 function inputDecimal (dot) {
+    if(calculator.waitingForSecondOperand === true) {
+        calculator.displayValue = '0.';
+        calculator.waitingForSecondOperand = false;
+        return;
+    }
+
     if (!calculator.displayValue.includes(dot)) {
         calculator.displayValue += dot;
     }
@@ -44,11 +50,18 @@ function handleOperator (nextOperator) {
     } else if (operator) {
         const result = calculate(firstOperand, inputValue, operator);
 
-        calculator.displayValue = String(result);
+        calculator.displayValue = `${parseFloat(result.toFixed(4))}`;
         calculator.firstOperand = result;
     }
     calculator.waitingForSecondOperand = true;
     calculator.operator = nextOperator;
+}
+
+function deleteNumber () {
+    let delNum = calculator.displayValue.slice(0, calculator.displayValue.length-1);
+    calculator.displayValue = Number(delNum);
+    calculator.firstOperand = Number(delNum);
+    updateDisplay();
 }
 
 function calculate (firstOperand, secondOperand, operator) {
@@ -93,6 +106,11 @@ keys.addEventListener('click', (event) => {
     if (target.classList.contains('ac-key')) {
         clearDisplay();
         updateDisplay();
+        return;
+    }
+
+    if (target.classList.contains('del-key')) {
+        deleteNumber();
         return;
     }
 
